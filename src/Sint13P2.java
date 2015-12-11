@@ -1,6 +1,5 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -19,11 +18,9 @@ import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.Map;
 
 
 public class Sint13P2 extends HttpServlet {
@@ -34,9 +31,8 @@ public class Sint13P2 extends HttpServlet {
     static ArrayList<String> ficheroErroneo = new ArrayList<String>();
 
     public void init() {
-        //listaIML.add("http://clave.det.uvigo.es:8080/~sintprof/15-16/p2/sabina.xml");
-        //listaIML.add("http://178.62.190.10/sabina.xml");
-        listaIML.add("sabina.xml");
+        listaIML.add("http://clave.det.uvigo.es:8080/~sintprof/15-16/p2/sabina.xml");
+
         for (int i = 0; i < listaIML.size(); i++) {    //leemos los xml
             String nuevoXML = listaIML.get(i);
             leerXML(nuevoXML);
@@ -500,12 +496,8 @@ public class Sint13P2 extends HttpServlet {
             Document doc = null;
             if(xml.startsWith("http:")){
                 doc = db.parse(new URL(xml).openStream(), "http://localhost:8013/sint13/");
-                //doc=db.parse(new URL (xml).openStream());
-                //doc = db.parse(xml);
             }else{
-                //doc = db.parse(new URL("http://clave.det.uvigo.es:8080/~sintprof/15-16/p2/"+xml).openStream(), "http://localhost:8013/sint13/");
-                //doc=db.parse(new URL ("http://178.62.190.10/"+xml).openStream());
-                doc = db.parse(xml);
+                doc = db.parse(new URL("http://clave.det.uvigo.es:8080/~sintprof/15-16/p2/"+xml).openStream(), "http://localhost:8013/sint13/");
             }
             listaDocuments.add(doc);
 
